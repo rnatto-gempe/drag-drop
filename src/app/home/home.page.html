@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Drag and drop Exemple
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" class="flex">
+    <div *ngFor="let item of items">
+      <div class="card" (drop)="drop($event)" draggable="true" (dragstart)="drag($event)" (dragover)="allowDrop($event)">
+        {{ item }}
+      </div>
+    </div>
+  </div>
+</ion-content>
