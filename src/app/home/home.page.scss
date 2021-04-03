@@ -1,14 +1,26 @@
-.card {
-  width: 200px;
-  height: 200px;
-  border: 1px solid #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #000;
-  margin: 10px;
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  transition: all 0.250s;
 }
 
-.flex {
-  display: flex;
+.box {
+  border: 3px solid #666;
+  background-color: #000f;
+  border-radius: .5em;
+  padding: 10px;
+  cursor: move;
+}
+.box.over {
+  border: 3px dotted #666;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }

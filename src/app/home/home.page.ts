@@ -1,27 +1,38 @@
 import { Component } from '@angular/core';
-
+import { debounce } from 'lodash';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  public dragIndex: number;
   public items = Array.from(Array(10).keys());
   constructor() {}
   public allowDrop(ev) {
-    console.log('ALLOW DROP');
     ev.preventDefault();
   }
-
+  public dragEnter(ev) {
+    if (ev.target?.classList) {
+      ev.target?.classList.add('over');
+    }
+  }
+  public dragLeave(ev) {
+    if (ev.target?.classList) {
+      ev.target?.classList.remove('over');
+    }
+  }
   public drag(ev) {
-    console.log('drag', ev);
-    ev.dataTransfer.setData("text", ev.target.id);
+    this.dragIndex = ev.target.id;
+    ev.target.style.opacity = 0.5;
+  }
+  public dragEnd(ev) {
+    ev.target.style.opacity = 1;
   }
   public drop(ev) {
-    console.log('DROP', ev);
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.
-    ev.target.appendChild(document.getElementById(data));
+    const temp = this.items[this.dragIndex];
+    this.items[this.dragIndex] = this.items[ev.target.id];
+    this.items[ev.target.id] = temp;
+    ev.target?.classList.remove('over');
   }
 }

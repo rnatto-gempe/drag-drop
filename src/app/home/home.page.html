@@ -13,11 +13,19 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container" class="flex">
-    <div *ngFor="let item of items">
-      <div class="card" (drop)="drop($event)" draggable="true" (dragstart)="drag($event)" (dragover)="allowDrop($event)">
-        {{ item }}
-      </div>
+  <div class="container">
+    <div
+      [id]="i"
+      class="box noselect"
+      draggable="true"
+      (dragstart)="drag($event)"
+      (dragenter)="dragEnter($event)"
+      (dragleave)="dragLeave($event)"
+      (dragover)="allowDrop($event)"
+      (dragend)="dragEnd($event)"
+      (drop)="drop($event)"
+      *ngFor="let item of items; let i = index">
+      {{ item }}
     </div>
   </div>
 </ion-content>
